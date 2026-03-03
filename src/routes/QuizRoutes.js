@@ -1,7 +1,16 @@
 import { Router } from "express";
-import { getAllQuizzes, getQuizById, createQuiz, updateQuiz, deleteQuiz } from "../controllers/QuizController.js";
+import {
+  getAllQuizzes,
+  getQuizById,
+  createQuiz,
+  updateQuiz,
+  deleteQuiz,
+} from "../controllers/QuizController.js";
+import authentication from "../middlewares/authentication.js";
 
 const router = Router();
+
+router.use(authentication);
 
 router.get("/", getAllQuizzes);
 router.get("/:id", getQuizById);
