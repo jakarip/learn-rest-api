@@ -31,12 +31,17 @@ export const login = async (req, res, next) => {
       // cek pass match
       const isMatch = compare(password, user.password);
       if (isMatch) {
-        const token = generateToken({ id: user._id, email: user.email });
+        const token = generateToken({
+          id: user._id,
+          email: user.email,
+          role: user.role,
+        });
         res.json({
           success: true,
           data: {
             id: user._id,
             email: user.email,
+            role: user.role,
             token,
           },
         });
